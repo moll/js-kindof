@@ -1,6 +1,7 @@
 Kindof.js
 =====================
 [![NPM version](https://badge.fury.io/js/kindof.png)](http://badge.fury.io/js/kindof)
+[![Build status](https://travis-ci.org/moll/js-kindof.png?branch=master)](https://travis-ci.org/moll/js-kindof)
 
 Kindof.js **provides a single `kindof` function** that does what you'd expect from `typeof` — gives you the proper semantic type regardless if the variable was a primitive literal (`"Hello"`), a boxed object (`new String("Hello")`) or came from another execution context (e.g. an array from another `<iframe>`).
 
