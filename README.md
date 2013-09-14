@@ -2,15 +2,15 @@ Kindof.js
 =====================
 [![NPM version](https://badge.fury.io/js/kindof.png)](http://badge.fury.io/js/kindof)
 
-Kindof.js provides the `kindof` function that does what you'd expect from `typeof` — gives you the proper semantic type regardless if the variable was a primitive literal (`"Hello"`), a boxed object (`new String("Hello")`) or came from another execution context (e.g. an array from another `<iframe>`).
+Kindof.js **provides a single `kindof` function** that does what you'd expect from `typeof` — gives you the proper semantic type regardless if the variable was a primitive literal (`"Hello"`), a boxed object (`new String("Hello")`) or came from another execution context (e.g. an array from another `<iframe>`).
 
-Kindof.js supports all ECMAScript built-in types and classes: `undefined`, `null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`, `Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are considered just objects. In general, objects that behave like value objects (numbers, dates etc.) or proper arrays have a kind other than `object`.
+Kindof.js supports all ECMAScript **built-in types and classes**: `undefined`, `null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`, `Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are considered just objects. In general, objects that behave like **value objects** (numbers, dates etc.) or proper arrays have a kind other than `object`.
 
 Please see the table below for the full list of kinds.
 
 
-Using
------
+Installing
+----------
 **Note**: Kindof.js follows [semantic versioning](http://semver.org/).
 
 ### Installing for the browser
@@ -20,11 +20,22 @@ Take the index.js file, rename it how you'd like and source it at will.
 Install with `npm install kindof`.  
 And require with `var kindof = require("kindof")`.
 
-### Using
-Then continue as you would:
+Using
+-----
+Pass any object to `kindof` and compare its output to what you expect:
 ```javascript
 kindof("Hello") // => "string"
 kindof(new String("Hello")) // => "string"
+```
+
+A switch statement might help:
+```javascript
+switch (kindof(obj)) {
+  case "null":   this.name = "Alfred"; break
+  case "string": this.name = obj; break
+  case "number": this.age = obj; break
+  default: throw new TypeError("Pardon, sir, came upon an unexpected type.")
+}
 ```
 
 
@@ -57,7 +68,7 @@ Value                 | Kindof
 `Math                `| object
 `JSON                `| object
 
-**Subclassed objects**, such as subclassed arrays, are considered to be `object` unless their internal `[[Class]]` property remains `Array`. For ways to subclass properly, please see further reading below.
+**Subclassed objects**, such as subclassed arrays, are considered to be `object` unless their internal `[[Class]]` property remains that of the original. For ways to subclass properly, please see further reading below.
 
 
 Further Reading
