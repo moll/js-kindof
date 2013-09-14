@@ -1,0 +1,6 @@
+{
+	"framework": "mocha",
+	"src_files": ["index.js", "test/*_test.js"],
+	"serve_files": ["browser.js"],
+	"before_tests": "browserify test/index_test.js -o browser.js"
+}

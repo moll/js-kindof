@@ -1,0 +1,35 @@
+{
+	"name": "kindof",
+	"version": "0.1.337",
+	"description": "A proper and semantic typeof function that works with literal primitives, boxed objects or those from another execution context.",
+	"keywords": [
+		"tostring",
+		"type",
+		"typeof"
+	],
+	"homepage": "https://github.com/moll/js-kindof",
+	"bugs": "https://github.com/moll/js-kindof/issues",
+
+	"author": {
+		"name": "Andri Möll",
+		"email": "andri@dot.ee",
+		"url": "http://themoll.com"
+	},
+
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/moll/js-kindof.git"
+	},
+
+	"licenses": [{
+		"type": "LAGPL",
+		"url": "https://github.com/moll/js-kindof/blob/master/LICENSE"
+	}],
+
+	"main": "index.js",
+	"scripts": {"test": "make test"},
+
+	"devDependencies": {
+		"mocha": ">= 1.12.0 < 2"
+	}
+}
