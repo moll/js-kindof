@@ -1,5 +1,5 @@
 Kindof.js
-=====================
+=========
 [![NPM version](https://badge.fury.io/js/kindof.png)](http://badge.fury.io/js/kindof)
 [![Build status](https://travis-ci.org/moll/js-kindof.png?branch=master)](https://travis-ci.org/moll/js-kindof)
 
