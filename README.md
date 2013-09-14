@@ -5,6 +5,18 @@ Kindof.js
 
 Kindof.js **provides a single `kindof` function** that does what you'd expect from `typeof` — gives you the proper semantic type regardless if the variable was a primitive literal (`"Hello"`), a boxed object (`new String("Hello")`) or came from another execution context (e.g. an array from another `<iframe>`).
 
+## Tour
+When and why should you use `kindof` over `typeof`?
+
+- When you need a type check that returns `"null"` given the `null` value.  
+  You might remember, JavaScript's `typeof` says `null` is an object.
+- When you want to **handle both literal primitives** `42` and **objects** `new Number(42)` (for robustness) the same way.  
+  A single `kindof(num) == "number"` check makes that easy.  
+  Be sure to compare with `==` to allow for coercion in that case.
+- When there's a chance you might get an object from **another execution context**.  
+  In the browser that might mean an object from another `<frame>`.  
+  Different execution contexts have different built-in class instances, so you can't do `obj instanceof Date` safely.
+
 Kindof.js supports all ECMAScript **built-in types and classes**: `undefined`, `null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`, `Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are considered just objects. In general, objects that behave like **value objects** (numbers, dates etc.) or proper arrays have a kind other than `object`.
 
 Please see the table below for the full list of kinds.
@@ -15,7 +27,7 @@ Installing
 **Note**: Kindof.js follows [semantic versioning](http://semver.org/).
 
 ### Installing for the browser
-Take the index.js file, rename it how you'd like and source it at will.
+Take the `kindof.js` file and source it at will.
 
 ### Installing on Node
 Install with `npm install kindof`.  
