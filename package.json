@@ -1,6 +1,6 @@
 {
 	"name": "kindof",
-	"version": "0.1.337",
+	"version": "1.0.0",
 	"description": "A proper and semantic typeof function that works with literal primitives, boxed objects and those from another execution context.",
 	"keywords": [
 		"tostring",
