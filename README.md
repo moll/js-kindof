@@ -15,8 +15,8 @@ When and why should you use `kindof` over `typeof`?
 
 - When you need a type check that returns `"null"` given the `null` value.  
   You might remember, JavaScript's `typeof` says `null` is an object.
-- When you want to **handle both literal primitives** `42` and **objects** `new
-  Number(42)` (for robustness) the same way.  
+- When you need to **handle both primitives** (`42`) and **objects** (`new
+  Number(42)`) (for robustness) the same way.  
   A single `kindof(num) == "number"` check makes that easy.  
   Be sure to compare `num` later with `==` to allow for coercion in that case.
 - When there's a chance you might get an object from **another execution
