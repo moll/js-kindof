@@ -15,128 +15,128 @@ describe("kindof", function() {
   })
 
   describe("given Boolean", function() {
-    it("must return so for true", function() {
+    it("must return \"boolean\" for true", function() {
       assert.strictEqual(kindof(true), "boolean")
     })
 
-    it("must return so for false", function() {
+    it("must return \"boolean\" for false", function() {
       assert.strictEqual(kindof(false), "boolean")
     })
 
-    it("must return so for new Boolean(true)", function() {
+    it("must return \"boolean\" for new Boolean(true)", function() {
       assert.strictEqual(kindof(new Boolean(true)), "boolean")
     })
 
-    it("must return so for new Boolean(false)", function() {
+    it("must return \"boolean\" for new Boolean(false)", function() {
       assert.strictEqual(kindof(new Boolean(false)), "boolean")
     })
 
     describe("given another context", function() {
-      context("must return so for boolean object", function(window) {
+      context("must return \"boolean\" for boolean boolean", function(window) {
         assert.strictEqual(kindof(new window.Boolean), "boolean")
       })
     })
   })
 
   describe("given Number", function() {
-    it("must return so for number literal", function() {
+    it("must return \"number\" for number literal", function() {
       assert.strictEqual(kindof(42), "number")
     })
 
-    it("must return so for zero number literal", function() {
+    it("must return \"number\" for zero number literal", function() {
       assert.strictEqual(kindof(0), "number")
     })
 
-    it("must return so for number object", function() {
+    it("must return \"number\" for number object", function() {
       assert.strictEqual(kindof(new Number(42)), "number")
     })
 
-    it("must return so for zero number object", function() {
+    it("must return \"number\" for zero number object", function() {
       assert.strictEqual(kindof(new Number(0)), "number")
     })
 
-    it("must return so for NaN", function() {
+    it("must return \"number\" for NaN", function() {
       assert.strictEqual(kindof(NaN), "number")
     })
 
-    it("must return so for Infinity", function() {
+    it("must return \"number\" for Infinity", function() {
       assert.strictEqual(kindof(Infinity), "number")
     })
 
     describe("given another context", function() {
-      context("must return so for number object", function(window) {
+      context("must return \"number\" for number object", function(window) {
         assert.strictEqual(kindof(new window.Number), "number")
       })
     })
   })
 
   describe("given String", function() {
-    it("must return so for string literal", function() {
+    it("must return \"string\" for string literal", function() {
       assert.strictEqual(kindof("Hello"), "string")
     })
 
-    it("must return so for empty string literal", function() {
+    it("must return \"string\" for empty string literal", function() {
       assert.strictEqual(kindof(""), "string")
     })
 
-    it("must return so for string object", function() {
+    it("must return \"string\" for string object", function() {
       assert.strictEqual(kindof(new String("Hello")), "string")
     })
 
-    it("must return so for empty string object", function() {
+    it("must return \"string\" for empty string object", function() {
       assert.strictEqual(kindof(new String), "string")
     })
 
     describe("given another context", function() {
-      context("must return so for string object", function(window) {
+      context("must return \"string\" for string object", function(window) {
         assert.strictEqual(kindof(new window.String), "string")
       })
     })
   })
 
   describe("given RegExp", function() {
-    it("must return so", function() {
+    it("must return \"regexp\"", function() {
       assert.strictEqual(kindof(/./), "regexp")
     })
 
     describe("given another context", function() {
-      context("must return so", function(window) {
+      context("must return \"regexp\"", function(window) {
         assert.strictEqual(kindof(new window.RegExp), "regexp")
       })
     })
   })
 
   describe("given Date", function() {
-    it("must return so", function() {
+    it("must return \"date\"", function() {
       assert.strictEqual(kindof(new Date), "date")
     })
 
     describe("given another context", function() {
-      context("must return so", function(window) {
+      context("must return \"date\"", function(window) {
         assert.strictEqual(kindof(new window.Date), "date")
       })
     })
   })
 
   describe("given Array", function() {
-    it("must return so", function() {
+    it("must return \"array\"", function() {
       assert.strictEqual(kindof([]), "array")
     })
 
     describe("given another context", function() {
-      context("must return so", function(window) {
+      context("must return \"array\"", function(window) {
         assert.strictEqual(kindof(new window.Array), "array")
       })
     })
   })
 
   describe("given Function", function() {
-    it("must return so", function() {
+    it("must return \"function\"", function() {
       assert.strictEqual(kindof(function() {}), "function")
     })
 
     describe("given another context", function() {
-      context("must return so", function(window) {
+      context("must return \"function\"", function(window) {
         assert.strictEqual(kindof(new window.Function), "function")
       })
     })
@@ -167,7 +167,7 @@ describe("kindof", function() {
   })
 
   describe("given Object", function() {
-    it("must return so", function() {
+    it("must return \"object\"", function() {
       assert.strictEqual(kindof({}), "object")
     })
   })
