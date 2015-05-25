@@ -1,4 +1,4 @@
-## Unreleased
+## 2.0.0 (May 25, 2015)
 - Removes support for boxed objects (`new Boolean`, `new Number`, `new String`)
   and considers them just as objects.
 
