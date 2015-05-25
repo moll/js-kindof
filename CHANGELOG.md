@@ -18,3 +18,5 @@
   ```javascript
   new String("Hello").valueOf() // => "Hello"
   ```
+
+- Adds support for `Symbol`.

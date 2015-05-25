@@ -94,6 +94,20 @@ describe("kindof", function() {
     })
   })
 
+  if (typeof Symbol == "function") describe("given Symbol", function() {
+    it("must return \"symbol\" for an anonymous symbol", function() {
+      assert.strictEqual(kindof(Symbol()), "symbol")
+    })
+
+    it("must return \"symbol\" for a named symbol", function() {
+      assert.strictEqual(kindof(Symbol("forEach")), "symbol")
+    })
+
+    it("must return \"symbol\" for an existing symbol", function() {
+      assert.strictEqual(kindof(Symbol.iterator), "symbol")
+    })
+  })
+
   describe("given RegExp", function() {
     it("must return \"regexp\"", function() {
       assert.strictEqual(kindof(/./), "regexp")

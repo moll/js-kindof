@@ -27,8 +27,8 @@ When and why should you use `kindof` over `typeof`?
   for why boxed objects are very error prone and should be avoided.
 
 Kindof.js supports all ECMAScript **built-in types and primitives**:
-`undefined`, `null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`,
-`Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are
+`undefined`, `null`, `Boolean`, `Number`, `String`, `Symbol`, `RegExp`, `Date`,
+`Array`, `Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are
 considered just objects.  In general, objects that behave like **value objects**
 (dates, regular expressions etc.) or proper arrays have a kind other than
 `object`.
@@ -112,6 +112,9 @@ Value                 | Kindof
 `NaN                 `| number
 `Infinity            `| number
 `"Hello"             `| string
+`Symbol()            `| symbol
+`Symbol("forEach")   `| symbol
+`Symbol.iterator     `| symbol
 `/.*/                `| regexp
 `new RegExp(".*")    `| regexp
 `new Date            `| date
