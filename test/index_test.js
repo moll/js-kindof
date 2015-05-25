@@ -39,11 +39,11 @@ describe("kindof", function() {
   })
 
   describe("given Number", function() {
-    it("must return \"number\" for number literal", function() {
+    it("must return \"number\" for number primitive", function() {
       assert.strictEqual(kindof(42), "number")
     })
 
-    it("must return \"number\" for zero number literal", function() {
+    it("must return \"number\" for zero number primitive", function() {
       assert.strictEqual(kindof(0), "number")
     })
 
@@ -71,11 +71,11 @@ describe("kindof", function() {
   })
 
   describe("given String", function() {
-    it("must return \"string\" for string literal", function() {
+    it("must return \"string\" for string primitive", function() {
       assert.strictEqual(kindof("Hello"), "string")
     })
 
-    it("must return \"string\" for empty string literal", function() {
+    it("must return \"string\" for empty string primitive", function() {
       assert.strictEqual(kindof(""), "string")
     })
 
