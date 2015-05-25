@@ -3,6 +3,9 @@ var assert = require("assert")
 var kindof = require("..")
 
 describe("kindof", function() {
+  // Allow using Boolean, Number, String as constructors in tests.
+  /* jshint -W053 */
+
   it("must return \"undefined\" for undefined", function() {
     assert.strictEqual(kindof(undefined), "undefined")
   })
