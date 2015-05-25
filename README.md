@@ -2,36 +2,66 @@ Kindof.js
 =========
 [![NPM version][npm-badge]](http://badge.fury.io/js/kindof)
 [![Build status][travis-badge]](https://travis-ci.org/moll/js-kindof)
-[npm-badge]: https://badge.fury.io/js/kindof.png
-[travis-badge]: https://travis-ci.org/moll/js-kindof.png?branch=master
 
 Kindof.js **provides a single `kindof` function** that does what you'd expect
 from `typeof` — gives you the proper semantic type regardless if the variable
-was a primitive literal (`"Hello"`), a boxed object (`new String("Hello")`) or
-came from another execution context (e.g. an array from another `<iframe>`).
+was a **primitive** (`"Hello"`), a **built-in [value object][value-object]**
+like (`new Date(2000, 5, 18)` or `/.*/`) or came from **another execution
+context** (e.g. an array from another `<iframe>`).
 
 ### Tour
 When and why should you use `kindof` over `typeof`?
 
 - When you need a type check that returns `"null"` given the `null` value.  
   You might remember, JavaScript's `typeof` says `null` is an object.
-- When you need to **handle both primitives** (`42`) and **objects** (`new
-  Number(42)`) (for robustness) the same way.  
-  A single `kindof(num) == "number"` check makes that easy.  
-  Be sure to compare `num` later with `==` to allow for coercion in that case.
+- When you need to **differentiate** between **plain objects** (`{name:
+  "John"}`) and **built-in value objects** (`new Date(2000, 5, 18)`).  
+  A single `kindof(obj) == "date"` check makes that easy.  
 - When there's a chance you might get an object from **another execution
   context**.  
   In the browser that might mean an object from another `<frame>`.  
   Different execution contexts have different built-in class instances, so you
   can't do `obj instanceof Date` safely.
+- Kindof.js does not consider boxed objects (instances of `Boolean`, `Number`
+  and `String`) to of the same type as their primitive counterparts. See below
+  for why boxed objects are very error prone and should be avoided.
 
-Kindof.js supports all ECMAScript **built-in types and classes**: `undefined`,
-`null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`, `Function` and
-plain old `Object`. Others, e.g. `Math` and `JSON`, are considered just objects.
-In general, objects that behave like **value objects** (numbers, dates etc.) or
-proper arrays have a kind other than `object`.
+Kindof.js supports all ECMAScript **built-in types and primitives**:
+`undefined`, `null`, `Boolean`, `Number`, `String`, `RegExp`, `Date`, `Array`,
+`Function` and plain old `Object`. Others, e.g. `Math` and `JSON`, are
+considered just objects.  In general, objects that behave like **value objects**
+(dates, regular expressions etc.) or proper arrays have a kind other than
+`object`.
 
 Please see the table below for the full list of kinds.
+
+### Primitives and Boxed Objects
+You might know, JavaScript has both primitive types and boxed object types for
+booleans, numbers and strings. Primitives are what you get from code literals
+(`true`, `42`, `"Hello"`) and from `JSON.parse`. Boxed objects tend to only
+appear when someone explicitly calls their constructor (`new Boolean(false)`).
+
+Boxed objects wouldn't be so bad, except JavaScript's equivalence operator
+(`==`), for all its type coercions, doesn't handle them transparently. While you
+can't compare other value types like dates and regular expressions with `==`
+either, you won't make that mistake that easily. The following is a small
+example of problems with boxed objects:
+
+```javascript
+new String("a") == new String("a") // => false
+new Boolean(true) == new Boolean(true) // => false
+Boolean(new Boolean(false)) // => true
+!!(new Boolean(false)) // => true
+```
+
+If you still wish Kindof to consider boxed Boolean, Number and String types like
+primitives (returning `"boolean"`, `"number"` and `"string"` respectively), feel
+free to use [Kindof.js's v1 branch][v1] with `npm install kindof@1`.
+
+[value-object]: https://en.wikipedia.org/wiki/Value_object
+[v1]: https://github.com/moll/kindof/tree/v1
+[npm-badge]: https://badge.fury.io/js/kindof.png
+[travis-badge]: https://travis-ci.org/moll/js-kindof.png?branch=master
 
 
 Installing
@@ -51,7 +81,7 @@ Using
 Pass any object to `kindof` and compare its output to what you expect:
 ```javascript
 kindof("Hello") // => "string"
-kindof(new String("Hello")) // => "string"
+kindof(new Date(2000, 5, 18)) // => "date"
 ```
 
 A switch statement might help:
@@ -59,7 +89,7 @@ A switch statement might help:
 switch (kindof(obj)) {
   case "null":   this.name = "Alfred"; break
   case "string": this.name = obj; break
-  case "number": this.age = obj; break
+  case "date": this.birthdate = obj; break
   default: throw new TypeError("Pardon, sir, came upon an unexpected type.")
 }
 ```
@@ -67,10 +97,10 @@ switch (kindof(obj)) {
 
 Kinds
 -----
-The pattern is simple — all built-in objects that behave like **value objects**
-(numbers, strings, dates etc.) or are **real arrays** are said to be of a kind
-other than `object`. The `arguments` object, however, is not a proper array, so
-it therefore is an `object`.
+The pattern is simple and follows `typeof`: besides primitives, built-in objects
+that are **value objects** (dates, regular expressions etc.) or **real arrays**
+are of a kind other than `object`. The `arguments` object, for example, is not
+a proper array and is therefore an `object`.
 
 Value                 | Kindof
 ----------------------|----------
@@ -78,13 +108,10 @@ Value                 | Kindof
 `null                `| null
 `true                `| boolean
 `false               `| boolean
-`new Boolean(true)   `| boolean
 `42                  `| number
-`new Number(42)      `| number
 `NaN                 `| number
 `Infinity            `| number
 `"Hello"             `| string
-`new String("Hello") `| string
 `/.*/                `| regexp
 `new RegExp(".*")    `| regexp
 `new Date            `| date
@@ -92,6 +119,9 @@ Value                 | Kindof
 `function() {}       `| function
 `{}                  `| object
 `arguments           `| object
+`new Boolean(true)   `| object
+`new Number(42)      `| object
+`new String("Hello") `| object
 `new MyClass         `| object
 `new Error           `| object
 `Math                `| object

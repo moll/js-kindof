@@ -23,17 +23,17 @@ describe("kindof", function() {
       assert.strictEqual(kindof(false), "boolean")
     })
 
-    it("must return \"boolean\" for new Boolean(true)", function() {
-      assert.strictEqual(kindof(new Boolean(true)), "boolean")
+    it("must return \"object\" for new Boolean(true)", function() {
+      assert.strictEqual(kindof(new Boolean(true)), "object")
     })
 
-    it("must return \"boolean\" for new Boolean(false)", function() {
-      assert.strictEqual(kindof(new Boolean(false)), "boolean")
+    it("must return \"object\" for new Boolean(false)", function() {
+      assert.strictEqual(kindof(new Boolean(false)), "object")
     })
 
     describe("given another context", function() {
-      context("must return \"boolean\" for boolean boolean", function(window) {
-        assert.strictEqual(kindof(new window.Boolean), "boolean")
+      context("must return \"object\" for boolean object", function(window) {
+        assert.strictEqual(kindof(new window.Boolean), "object")
       })
     })
   })
@@ -47,12 +47,12 @@ describe("kindof", function() {
       assert.strictEqual(kindof(0), "number")
     })
 
-    it("must return \"number\" for number object", function() {
-      assert.strictEqual(kindof(new Number(42)), "number")
+    it("must return \"object\" for number object", function() {
+      assert.strictEqual(kindof(new Number(42)), "object")
     })
 
-    it("must return \"number\" for zero number object", function() {
-      assert.strictEqual(kindof(new Number(0)), "number")
+    it("must return \"object\" for zero number object", function() {
+      assert.strictEqual(kindof(new Number(0)), "object")
     })
 
     it("must return \"number\" for NaN", function() {
@@ -64,8 +64,8 @@ describe("kindof", function() {
     })
 
     describe("given another context", function() {
-      context("must return \"number\" for number object", function(window) {
-        assert.strictEqual(kindof(new window.Number), "number")
+      context("must return \"object\" for number object", function(window) {
+        assert.strictEqual(kindof(new window.Number), "object")
       })
     })
   })
@@ -79,17 +79,17 @@ describe("kindof", function() {
       assert.strictEqual(kindof(""), "string")
     })
 
-    it("must return \"string\" for string object", function() {
-      assert.strictEqual(kindof(new String("Hello")), "string")
+    it("must return \"object\" for string object", function() {
+      assert.strictEqual(kindof(new String("Hello")), "object")
     })
 
-    it("must return \"string\" for empty string object", function() {
-      assert.strictEqual(kindof(new String), "string")
+    it("must return \"object\" for empty string object", function() {
+      assert.strictEqual(kindof(new String), "object")
     })
 
     describe("given another context", function() {
-      context("must return \"string\" for string object", function(window) {
-        assert.strictEqual(kindof(new window.String), "string")
+      context("must return \"object\" for string object", function(window) {
+        assert.strictEqual(kindof(new window.String), "object")
       })
     })
   })
