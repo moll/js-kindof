@@ -59,7 +59,7 @@ primitives (returning `"boolean"`, `"number"` and `"string"` respectively), feel
 free to use [Kindof.js's v1 branch][v1] with `npm install kindof@1`.
 
 [value-object]: https://en.wikipedia.org/wiki/Value_object
-[v1]: https://github.com/moll/kindof/tree/v1
+[v1]: https://github.com/moll/js-kindof/tree/v1
 [npm-badge]: https://img.shields.io/npm/v/kindof.svg
 [travis-badge]: https://travis-ci.org/moll/js-kindof.png?branch=master
 
