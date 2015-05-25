@@ -1,6 +1,6 @@
 Kindof.js
 =========
-[![NPM version][npm-badge]](http://badge.fury.io/js/kindof)
+[![NPM version][npm-badge]](https://www.npmjs.com/package/kindof)
 [![Build status][travis-badge]](https://travis-ci.org/moll/js-kindof)
 
 Kindof.js **provides a single `kindof` function** that does what you'd expect
@@ -60,7 +60,7 @@ free to use [Kindof.js's v1 branch][v1] with `npm install kindof@1`.
 
 [value-object]: https://en.wikipedia.org/wiki/Value_object
 [v1]: https://github.com/moll/kindof/tree/v1
-[npm-badge]: https://badge.fury.io/js/kindof.png
+[npm-badge]: https://img.shields.io/npm/v/kindof.svg
 [travis-badge]: https://travis-ci.org/moll/js-kindof.png?branch=master
 
 
