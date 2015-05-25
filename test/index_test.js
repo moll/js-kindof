@@ -180,14 +180,10 @@ describe("kindof", function() {
     if (typeof window == "undefined") return it.skip(title)
 
     it(title, function() {
-      try {
-        var frame = document.createElement("iframe")
-        document.body.appendChild(frame)
-        fn(frame.contentWindow)
-      }
-      finally {
-        document.body.removeChild(frame)
-      }
+      var frame = document.createElement("iframe")
+      document.body.appendChild(frame)
+      try { fn(frame.contentWindow) }
+      finally { document.body.removeChild(frame) }
     })
   }
 })
